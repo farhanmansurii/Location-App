@@ -8,7 +8,7 @@ interface Location {
   year: number;
 }
 
-const InputSearch: React.FC = ({ setSelectedLocation, selectedLocation }) => {
+const InputSearch: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [locations, setLocations] = useState<Location[]>([]);
   const [searchTimeout, setSearchTimeout] = useState<number | null>(null);
@@ -36,14 +36,13 @@ const InputSearch: React.FC = ({ setSelectedLocation, selectedLocation }) => {
   return (
     <div>
       <form onSubmit={(e) => e.preventDefault()}>
-        <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+        <input type="text" placeholder='Search Any location' style={{ fontSize: '13px', width: 'full', outline: 'none', paddingInline: '1rem', padding: '5px', borderRadius: '1rem' }} value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
       </form>
       <ul>
         {locations.slice(0, 5).map((location) => (
-          <li key={location.name} >
+          <div key={location.name} style={{ fontSize: '10px', width: "inherit", border: '2px', backgroundColor: 'gray', margin: '5px' }}>
             {location.name}
-            <button onClick={() => { console.log([location.latitude, location.longitude]), selectedLocation([location.latitude, location.longitude]) }}>Select</button>
-          </li>
+          </div>
         ))}
       </ul>
     </div>

@@ -6,12 +6,13 @@ const Mapreducer = () => {
   const locationHistory = useSelector((state) => state.location.locationHistory);
   const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const handleClick = (location:any) => {
     
-    const newLocation = {
-      latitude: 52.5487429714954,
-      longitude:23
-    };
+    const newLocation = [
+     location.latitude,
+      location.longitude
+    ]
+    console.log(location.latitude,location.longitude)
     dispatch(updateCurrentLocation(newLocation));
   }
 
@@ -29,7 +30,7 @@ const Mapreducer = () => {
       </div>
       <div>
         Location History:<div>
-           {locationHistory.map((location) => `(${location.latitude}, ${location.longitude})`).join(', ')}
+           {locationHistory.map((location) => <div onClick={()=>handleClick(location)}>{location.latitude}, {location.longitude}</div>)}
           </div>
       </div>
     </div>

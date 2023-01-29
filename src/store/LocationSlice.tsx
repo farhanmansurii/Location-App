@@ -4,6 +4,9 @@ interface LocationState {
   currentLocation: {
     latitude: number;
     longitude: number;
+    display_name: string,
+    population?: number
+    population_year?: number
   };
   locationHistory: Array<{
     latitude: number;
@@ -14,7 +17,10 @@ interface LocationState {
 const initialState: LocationState = {
   currentLocation: {
     latitude: 42.3554334,
-    longitude: -71.060511
+    longitude: -71.060511,
+    display_name: "Boston, Suffolk County, Massachusetts, United States",
+    population: 689326,
+    population_year: 2015
   },
   locationHistory: []
 };

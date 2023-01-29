@@ -2,8 +2,18 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
+  color: #243e36;
   text-align: center;
+  font-family: "Apercu Mono";
 }
+@font-face {
+  font-family: "Apercu Mono";
+  src: url("./assets/fonts/Apercu-Mono.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 .leaflet-container {
   width: 100%;
   height: 100vh;

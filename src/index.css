@@ -1,13 +1,10 @@
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Apercu Mono";
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
+  background-color: #243e36;
+  background-size: cover;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -21,7 +18,7 @@ a {
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #243e36;
 }
 
 body {
@@ -31,40 +28,204 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+/* From uiverse.io by @satyamchaudharydev */
+/* removing default style of button */
+.history-container {
+  width: var(--width-of-input);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 10px;
+}
+.details {
+  background-color: #243e36;
+  border: 2px solid #7ca982;
+  color: #7ca982;
+  display: flex;
+  padding: 0.5rem;
+  padding-inline: 1rem;
+  margin-top: 1rem;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.population {
+  display: flex;
+  margin-bottom: 1rem;
+  font-weight: normal;
+  align-self: baseline;
+  background-color: #7ca982;
+  color: #243e36;
+}
+.search_results {
+  width: fit-content;
+  word-wrap: break-word;
+  align-items: center;
+  flex-wrap: wrap;
+  display: grid;
+  justify-items: center;
+  grid-template-rows: 3;
+  margin: auto;
+}
+.history {
+  align-self: center;
+  width: fit-content;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+}
+.form button {
+  border: none;
+  background: none;
+  color: #7ca982;
+}
+.loader {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: transparent;
+  border-radius: 50%;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.loader {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: transparent;
+  width: 36px;
+  height: 36px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.loader {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: transparent;
+  width: 36px;
+  height: 36px;
+  animation: spin89345 1s linear infinite;
+}
+
+@keyframes spin89345 {
+  0% {
+    transform: rotate(0deg);
   }
-  a:hover {
-    color: #747bff;
+
+  100% {
+    transform: rotate(360deg);
   }
-  button {
-    background-color: #f9f9f9;
-  }
+}
+.result {
+  width: var(--width-of-input);
+  margin-inline: auto;
+
+  background-color: #242424;
+  padding: 10px;
+  padding-inline: 1rem;
+  margin: 2px;
+  align-self: center;
+  background-color: #7ca982;
+}
+.result:hover {
+  text-decoration: underline;
+  animation-duration: inherit;
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+/* styling of whole input container */
+.form {
+  --timing: 0.3s;
+  font-family: "Apercu Mono";
+  --width-of-input: 260px;
+  --height-of-input: 40px;
+  --border-height: 2px;
+  --input-bg: #243e36;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  --border-color: #7ca982;
+  --border-radius: 30px;
+  --after-border-radius: 1px;
+  position: relative;
+  width: var(--width-of-input);
+  height: var(--height-of-input);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-inline: 0.8em;
+  border-radius: var(--border-radius);
+  -webkit-transition: border-radius 0.5s ease;
+  transition: border-radius 0.5s ease;
+  background: var(--input-bg, #243e36);
+}
+/* styling of Input */
+.input {
+  font-size: 0.9rem;
+  background-color: transparent;
+  color: #7ca982;
+  width: 100%;
+  height: 100%;
+  padding-inline: 0.5em;
+  padding-block: 0.7em;
+  border: none;
+}
+/* styling of animated border */
+.form:before {
+  content: "";
+  position: absolute;
+  background: var(--border-color);
+  -webkit-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  transform: scaleX(0);
+  -webkit-transform-origin: center;
+  -ms-transform-origin: center;
+  transform-origin: center;
+  width: 100%;
+  height: var(--border-height);
+  left: 0;
+  bottom: 0;
+
+  border-radius: 1px;
+  -webkit-transition: -webkit-transform var(--timing) ease;
+  transition: -webkit-transform var(--timing) ease;
+  transition: transform var(--timing) ease;
+  transition: transform var(--timing) ease, -webkit-transform var(--timing) ease;
+}
+/* Hover on Input */
+.form:focus-within {
+  border-radius: var(--after-border-radius);
+}
+
+input:focus {
+  outline: none;
+}
+input::placeholder {
+  color: #7ca982;
+  font-family: "Apercu Mono";
+}
+/* here is code of animated border */
+.form:focus-within:before {
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+.reset {
+  border: none;
+  background: none;
+  opacity: 0;
+  visibility: hidden;
+}
+input:not(:-moz-placeholder-shown) ~ .reset {
+  color: #7ca982;
+  opacity: 1;
+  visibility: visible;
+}
+input:not(:-ms-input-placeholder) ~ .reset {
+  opacity: 1;
+  color: #7ca982;
+  visibility: visible;
+}
+input:not(:placeholder-shown) ~ .reset {
+  color: #7ca982;
+  visibility: visible;
+}
+/* sizing svg icons */
+.form svg {
+  width: 17px;
+  margin-top: 3px;
 }

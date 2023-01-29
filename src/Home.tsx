@@ -92,7 +92,7 @@ export default function Home() {
         </form>
 
         {status === 'loading' &&
-          <div className="loader"></div>}
+          <div style={{ color: "#7ca982" }}>Loading Places.</div>}
         {
           status === 'success' && <div className='search_results'> {!ishidden && data.map((e: any, i: number) =>
             e.type === 'administrative' &&

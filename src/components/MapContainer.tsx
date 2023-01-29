@@ -4,13 +4,14 @@ import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import "leaflet/dist/leaflet.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from "../store/store";
 let DefaultIcon = L.icon({
   iconUrl: icon,
   shadowUrl: iconShadow,
 });
 
 export default function MapWrapper() {
-  const currentLocation = useSelector((state) => state.location.currentLocation);
+  const currentLocation = useSelector((state: RootState) => state.location.currentLocation);
   const dispatch = useDispatch();
 
   useEffect(() => {

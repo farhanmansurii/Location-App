@@ -29,7 +29,13 @@ const locationSlice = createSlice({
   name: 'location',
   initialState,
   reducers: {
-    updateCurrentLocation: (state, action: PayloadAction<{ latitude: number; longitude: number }>) => {
+    updateCurrentLocation: (state, action: PayloadAction<{
+      latitude: number;
+      longitude: number;
+      display_name: string,
+      population?: number
+      population_year?: number
+    }>) => {
       state.currentLocation = action.payload;
       state.locationHistory.push(action.payload);
     },

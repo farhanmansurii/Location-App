@@ -23,7 +23,7 @@ export default function DetailsComponent({ data }) {
         }}
         onClick={() => console.log("shared successfully!")}
       >
-        <button>Share 🔗</button>
+        <button style={{ background: "#7ca982", border: '0px', width: 'fit-content', padding: '0.5rem', marginLeft: '1rem', borderRadius: '4rem' }}>Share 🔗</button>
       </RWebShare>
     </div>
   )

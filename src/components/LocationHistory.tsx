@@ -1,21 +1,28 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { clearLocationHistory, updateCurrentLocation } from '../store/LocationSlice';
-
+import { clearLocationHistory } from '../store/LocationSlice';
+import { RootState } from '../store/store';
+interface location {
+  latitude: number;
+  longitude: number;
+  display_name: string,
+  population?: number
+  population_year?: number
+}
 const LocationHistory = () => {
-  const currentLocation = useSelector((state) => state.location.currentLocation);
-  const locationHistory = useSelector((state) => state.location.locationHistory);
+  const currentLocation = useSelector((state: RootState) => state.location.currentLocation);
+  const locationHistory = useSelector((state: RootState) => state.location.locationHistory);
   const dispatch = useDispatch();
 
-  const handleClick = (location: any) => {
+  // const handleClick = (location: Location) => {
 
-    const newLocation = [
-      location.latitude,
-      location.longitude
-    ]
-    console.log(location.latitude, location.longitude)
+  //   const newLocation = [
+  //     location.latitude,
+  //     location.longitude
+  //   ]
+  //   console.log(location.latitude, location.longitude)
 
-    dispatch(updateCurrentLocation(newLocation));
-  }
+  //   dispatch(updateCurrentLocation(newLocation));
+  // }
 
   const handleClearHistory = () => {
     dispatch(clearLocationHistory());
@@ -38,7 +45,7 @@ const LocationHistory = () => {
       </div>
 
       {
-        locationHistory.map((e: any) => <div className='result'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" style={{
+        locationHistory.map((e: location) => <div className='result'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" style={{
           width: '1rem', paddingRight: '3px'
         }} >
           <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />

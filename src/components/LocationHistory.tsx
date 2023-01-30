@@ -11,6 +11,11 @@ interface location {
 const LocationHistory = () => {
   const currentLocation = useSelector((state: RootState) => state.location.currentLocation);
   const locationHistory = useSelector((state: RootState) => state.location.locationHistory);
+  let uniqueLocations = locationHistory.filter((location, index, self) =>
+  index === self.findIndex((t) => (
+    t.latitude === location.latitude && t.longitude === location.longitude
+  ))
+);
   const dispatch = useDispatch();
   const handleClick = (location:any) => {
     const newLocation = {
@@ -33,7 +38,7 @@ const LocationHistory = () => {
         <div style={{
           fontSize
             : '20px', display: 'flex', gap: '10px'
-        }}><div >All Recent Locations</div>
+        }}><div >Your Recent Location(s)</div>
           <div onClick={() => handleClearHistory()}>
             <svg xmlns="http://www.w3.org/2000/svg" style={{ width: '1rem', margin: 'auto', backgroundColor: '#7ca982', color: '#243e36', borderRadius: '4rem', padding: '5px' }} fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -43,7 +48,7 @@ const LocationHistory = () => {
       </div>
 
       {
-        locationHistory.map((e: location) => <div className='result' onClick={()=>handleClick(e)}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" style={{
+        uniqueLocations.reverse().map((e: location) => <div className='result' onClick={()=>handleClick(e)}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" style={{
           width: '1rem', paddingRight: '3px'
         }} >
           <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />

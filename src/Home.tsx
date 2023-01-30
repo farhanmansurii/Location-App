@@ -15,8 +15,9 @@ export default function Home() {
     const longitude = parseFloat(params.get('longitude')) || currentLocation.longitude
     const population = parseInt(params.get('population')) || currentLocation.population
     const display_name = (params.get('display_name')) || currentLocation.display_name
+    const year = parseInt(params.get('year')) || currentLocation.year
     const newLocation = {
-      latitude, longitude, population, display_name
+      latitude, longitude, population, display_name , year
     }
     if (locationHistory.some(location => location.latitude === newLocation.latitude)) {
       console.log("exists")
@@ -44,12 +45,14 @@ export default function Home() {
       longitude: e.lon,
       display_name: e.display_name,
       population: e.extratags.population,
+      year:e.extratags['census:population']
     };
     const params = new URLSearchParams();
     params.set("latitude", newLocation.latitude)
     params.set("longitude", newLocation.longitude)
     params.set("display_name", newLocation.display_name)
     params.set("population", newLocation.population)
+    params.set("year", newLocation.year)
     window.history.pushState({}, '', `?${params.toString()}`)
     if (locationHistory.some(location => location.latitude === newLocation.latitude)) {
       console.log("exists")

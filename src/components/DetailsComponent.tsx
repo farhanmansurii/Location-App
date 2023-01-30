@@ -9,9 +9,9 @@ export default function DetailsComponent({ data }) {
           margin: '10px', gap: '3px'
           , paddingInline: '14px', paddingTop: '7px', paddingBottom: '7px', borderRadius: '30px'
         }}>
-          Population : {data.population}
-          {data.population_year &&
-            <span>{"  "} as per year {data.population_year}</span>
+          Population : {data.population} 
+          {data.year &&
+            <span>{"    "}     as per year {data.year}</span>
           }
         </div>
       }

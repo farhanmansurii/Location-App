@@ -11,6 +11,9 @@ interface LocationState {
   locationHistory: Array<{
     latitude: number;
     longitude: number;
+    display_name: string,
+    population?: number
+    year?: number
   }>;
 }
 

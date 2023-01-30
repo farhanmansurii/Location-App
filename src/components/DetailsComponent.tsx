@@ -20,7 +20,7 @@ export default function DetailsComponent({ data }) {
           url: window.location.href,
         }}
       >
-        <div>Share
+        <div>Share / Save location ? 
         </div>
       </RWebShare >
     </div >

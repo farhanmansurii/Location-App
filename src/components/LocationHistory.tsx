@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { clearLocationHistory } from '../store/LocationSlice';
+import { clearLocationHistory, updateCurrentLocation } from '../store/LocationSlice';
 import { RootState } from '../store/store';
 interface location {
   latitude: number;
@@ -12,23 +12,21 @@ const LocationHistory = () => {
   const currentLocation = useSelector((state: RootState) => state.location.currentLocation);
   const locationHistory = useSelector((state: RootState) => state.location.locationHistory);
   const dispatch = useDispatch();
-
-  // const handleClick = (location: Location) => {
-
-  //   const newLocation = [
-  //     location.latitude,
-  //     location.longitude
-  //   ]
-  //   console.log(location.latitude, location.longitude)
-
-  //   dispatch(updateCurrentLocation(newLocation));
-  // }
-
+  const handleClick = (location:any) => {
+    const newLocation = {
+      latitude: location.latitude,
+      longitude:location.longitude,
+      display_name:location.display_name,
+      population:location.population
+    };
+    dispatch(updateCurrentLocation(newLocation));
+  }
   const handleClearHistory = () => {
     dispatch(clearLocationHistory());
   }
 
-  return (<>
+  return (
+  <>
 
     <div className='search_results'>
       <div style={{ marginTop: '1rem', display: 'flex', backgroundColor: "#243e36", color: "#7ca982", padding: '0.5rem' }}>
@@ -45,7 +43,7 @@ const LocationHistory = () => {
       </div>
 
       {
-        locationHistory.map((e: location) => <div className='result'><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" style={{
+        locationHistory.map((e: location) => <div className='result' onClick={()=>handleClick(e)}><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" style={{
           width: '1rem', paddingRight: '3px'
         }} >
           <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />

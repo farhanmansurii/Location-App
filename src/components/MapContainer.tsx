@@ -17,9 +17,10 @@ export default function MapWrapper() {
   useEffect(() => {
     var container = L.DomUtil.get("map");
 
-    if (container != null) {
-      container._leaflet_id = null;
+    if (container) {
+      (container as any)._leaflet_id = null;
     }
+
 
     var map = L.map("map").setView([currentLocation.latitude, currentLocation.longitude], 13);
     L.tileLayer(
@@ -38,7 +39,6 @@ export default function MapWrapper() {
     ).addTo(map);
     L.Marker.prototype.options.icon = DefaultIcon;
     var marker = L.marker([currentLocation.latitude, currentLocation.longitude]).addTo(map);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentLocation]);
   return <div id="map" style={{ minWidth: '350px', justifySelf: 'center' }} ></div>;
 }
